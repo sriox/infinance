@@ -1,0 +1,16 @@
+<div>
+	<table>
+		<tr>
+			<th>Banco</th>
+			<th>Tasa</th>
+			<th>Plazo Min</th>
+			<th>Plazo Max</th>
+		</tr>
+		<tr ng-repeat="offer in data">
+			<td>{{offer.banco}}</td>
+			<td>{{offer.tasa}}</td>
+			<td>{{offer.plazo.min}}</td>
+			<td>{{offer.plazo.max}}</td>
+		</tr>
+	</table>
+</div>
