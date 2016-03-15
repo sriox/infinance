@@ -1,7 +1,7 @@
 (function(){
 	"use strict";
 
-	var app = angular.module('infinanceApp', ['ngRoute', 'infinanceControllers']);
+	var app = angular.module('infinanceApp', ['ngResource', 'infinanceControllers']);
 
 	/*app.config(['$routeProvider',function($routeProvider) {
 		$routeProvider.

@@ -18,8 +18,10 @@
     <script type="text/javascript" src="js/template-scripts.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
     <script src="https://code.angularjs.org/1.5.0/angular-route.min.js"></script>
+    <script src="https://code.angularjs.org/1.5.0/angular-resource.min.js"></script>    
     <script src="app/app.js"></script>
     <script src="app/controllers.js"></script>
+    <script src="app/services.js"></script>
 
     <!--[if lt IE 9]>
         <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -221,10 +223,6 @@
                 <div>
                     <table>
                         <tr>
-                            <td>Salario</td>
-                            <td><input type="text" ng-model="salary" /></td>
-                        </tr>
-                        <tr>
                             <td>Valor Crédito</td>
                             <td><input type="text" ng-model="creditValue" /></td>
                         </tr>
@@ -242,13 +240,32 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Antiguedad empleo (Meses)</td>
-                            <td><input type="text" ng-model="value" /></td>
+                            <td>Salario</td>
+                            <td><input type="text" ng-model="salary" /></td>
                         </tr>
                         <tr>
                             <td colspan="2">
-                                <button ng-click="compareCredits()">Comparar</button>
+                                <button ng-disabled="!products.list" ng-click="compareCredits()">Comparar</button>
                             </td>
+                        </tr>
+                    </table>
+                    <table ng-show="validProducts.length > 0">
+                        <tr>
+                            <th colspan="2">Banco</th>
+                            <th>Tasa Anual</th>
+                            <th>Tasa Mensual</th>
+                            <th>Valor Cuota</th>
+                            <th>Pago Total</th>
+                            <th>Intereses Totals</th>
+                        </tr>
+                        <tr ng-repeat="product in validProducts | orderBy: 'monthlyPayment'">
+                            <td><img ng-src="img/{{product.id}}.jpg" height="30" alt=""></td>
+                            <td>{{product.bank}}</td>
+                            <td>{{product.selectedRate.value}}</td>
+                            <td>{{product.monthlyRate | number : 2}}</td>
+                            <td>{{product.monthlyPayment | currency}}</td>
+                            <td>{{product.totalPayment | currency}}</td>
+                            <td>{{product.totalRatePayment | currency}}</td>
                         </tr>
                     </table>
                 </div>

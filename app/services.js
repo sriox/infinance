@@ -1,11 +1,9 @@
 (function(){
 	'use strict';
 
-	var services = angular.module('infinanceServices', []);
+	var infinanceServices = angular.module('infinanceServices', []);
 
-	services.factory('name', ['', function(){
-		return function name(){
-			
-		};
+	infinanceServices.factory('Products', ['$resource', function($resource){
+		return $resource('data/credits.js');
 	}])
 }());
