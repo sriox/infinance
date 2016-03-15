@@ -85,23 +85,23 @@
                 <div class="margin">
                     <div class="s-12 m-6 l-3 margin-bottom">
                         <i class="icon-tablet icon3x"></i>
-                        <h2>Fully responsive</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+                        <h2>Compara ofertas de crédito</h2>
+                        <p>Revisa entre las opciones de todos los bancos cual es la opción que mas se adapta a tus necesidades</p>
                     </div>
                     <div class="s-12 m-6 l-3 margin-bottom">
                         <i class="icon-isight icon3x"></i>
-                        <h2>Clean design</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat adipiscing.</p>
+                        <h2>Enterate</h2>
+                        <p>Te avisaremos cada que encontremos mejores ofertas para ti</p>
                     </div>
                     <div class="s-12 m-6 l-3 margin-bottom">
                         <i class="icon-star icon3x"></i>
-                        <h2>Valid code</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna erat volutpat.</p>
+                        <h2>Simula</h2>
+                        <p>Revisa detalladamente tu plan de pagos para que estes seguro de la opción que eliges</p>
                     </div>
                     <div class="s-12 m-6 l-3 margin-bottom">
                         <i class="icon-heart icon3x"></i>
-                        <h2>Totally free</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat nonummy.</p>
+                        <h2>Historicos</h2>
+                        <p>Revisa el comportamiento de las opciones que mas te atraen para aprender como funcionan.</p>
                     </div>
                 </div>
             </div>
@@ -224,11 +224,11 @@
                     <table>
                         <tr>
                             <td>Valor Crédito</td>
-                            <td><input type="text" ng-model="creditValue" /></td>
+                            <td><input type="text" ng-model="creditValue" /><br /><span ng-show="errorsCount > 0 && errors.creditValue.status">{{errors.creditValue.message}}</span></td>
                         </tr>
                         <tr>
                             <td>Plazo</td>
-                            <td><input type="text" ng-model="term" /></td>
+                            <td><input type="text" ng-model="term" /><br /><span ng-show="errorsCount > 0 && errors.term.status">{{errors.term.message}}</span></td>
                         </tr>
                         <tr>
                             <td>Es empleado</td>
@@ -241,7 +241,7 @@
                         </tr>
                         <tr>
                             <td>Salario</td>
-                            <td><input type="text" ng-model="salary" /></td>
+                            <td><input type="text" ng-model="salary" />&nbsp;<small>Cero para omitir</small></td>
                         </tr>
                         <tr>
                             <td colspan="2">

@@ -16,23 +16,47 @@
 
 		$scope.products = Products.get();
 		$scope.validProducts = [];
+		$scope.errorsCount = 0;
+		$scope.errors = {};
+		$scope.errors.creditValue = {};
+		$scope.errors.term = {};
+
+		$scope.validate = function(){
+
+			if(!$scope.creditValue){
+				$scope.errors.creditValue.status = true;
+				$scope.errors.creditValue.message = 'Debe diligenciar el valor del monto';
+				$scope.errorsCount++;
+			}
+
+			if(!$scope.term){
+				$scope.errors.term.status = true;
+				$scope.errors.term.message = 'Debe diligenciar el plazo';
+				$scope.errorsCount++;
+			}
+		}
 
 		$scope.compareCredits = function(){
-			var products = $scope.products.list;
-			$scope.validProducts = [];
+			$scope.errorsCount = 0;
+			$scope.validate();
 
-			angular.forEach(products, function(product){
-				var validRate = filterTerm(product.rates, $scope.term);
-				if(!!validRate && validateSalary(product, $scope.salary)){
-					product.selectedRate = validRate;
-					product.monthlyPayment = getMonthlyPayment($scope.creditValue, $scope.term, validRate);
-					product.totalPayment = getTotalPayment(product.monthlyPayment, $scope.term);
-					product.monthlyRate = getMonthlyRate(validRate.value);
-					product.totalRatePayment = product.totalPayment - parseFloat($scope.creditValue);
+			if($scope.errorsCount === 0){
+				var products = $scope.products.list;
+				$scope.validProducts = [];
 
-					$scope.validProducts.push(product);
-				}
-			});
+				angular.forEach(products, function(product){
+					var validRate = filterTerm(product.rates, $scope.term);
+					if(!!validRate && validateSalary(product, $scope.salary)){
+						product.selectedRate = validRate;
+						product.monthlyPayment = getMonthlyPayment($scope.creditValue, $scope.term, validRate);
+						product.totalPayment = getTotalPayment(product.monthlyPayment, $scope.term);
+						product.monthlyRate = getMonthlyRate(validRate.value);
+						product.totalRatePayment = product.totalPayment - parseFloat($scope.creditValue);
+
+						$scope.validProducts.push(product);
+					}
+				});
+			}
 		}
 	}]);
 
@@ -75,4 +99,6 @@
 		var minSalary = parseFloat(product.restrictions.minSalary);
 		return minSalary <= xSalary;
 	}
+
+
 }());
