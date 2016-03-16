@@ -47,8 +47,8 @@
 
             var options =
             {
-                width: 500,//width of slider
-                height: 217,//height of slider
+                width: 800,//width of slider
+                height: 250,//height of slider
                 next_prev: true,//will show next and prev links
                 next_class: 'btn btn-success btn-xl',//class for next link
                 prev_class: 'btn btn-success btn-xl',//class for prev link
@@ -59,18 +59,10 @@
                     submit: 'Comparar'
                 },
                 speed: 600,//slider speed
-                error_position: 'inside',
+                error_position: 'onelement',
                 validation: true,
                 nav_class: 'nav_class',
-                submit_class: 'btn btn-info btn-xl',
-                submit_id: 'btnCompare',
-                success: function () {
-                    alert("Success ");
-                }, submit_handler: function () {
-                    alert("Comparar");
-                    compareCredits();
-
-                },
+                submit_button: false
 
             };
 
@@ -188,7 +180,7 @@
                 <br />
                 <table style="width:100%;text-align:center;">
                     <tr>
-                        <td style="width:30%; border-top:1px solid white;border-left:1px solid white;border-bottom:1px solid white;"></td>
+                        <td style="width:10%; border-top:1px solid white;border-left:1px solid white;border-bottom:1px solid white;"></td>
                         <td>
                             <h2 style="color:#56C201;">Ingresa tus datos básicos para encontrar las mejores ofertas</h2>
                             <div id="slider" class="form">
@@ -196,15 +188,13 @@
                                     <li data-id="slider_ValorCredito">
                                         <div class="form-group">
                                             <label class="control-label">Valor Crédito</label>
-                                            <div class="col-sm-10">
-                                                <input id="txtCreditValue" type="text" ng-model="creditValue" data-msg="Es requerido" class="form-control" required><br /><span ng-show="errorsCount > 0 && errors.creditValue.status">{{errors.creditValue.message}}</span>
-                                            </div>
+                                            <input id="txtCreditValue" type="text" ng-model="creditValue" data-msg="Es requerido" class="form-control" required number><br /><span ng-show="errorsCount > 0 && errors.creditValue.status">{{errors.creditValue.message}}</span>
                                         </div>
                                     </li>
                                     <li data-id="slider_Plazo">
                                         <div class="form-group">
                                             <label class="control-label" for="txtTerm">Plazo</label>
-                                            <input id="txtTerm" type="text" ng-model="term" data-msg="Es requerido" class="form-control" required><br /><span ng-show="errorsCount > 0 && errors.term.status">{{errors.term.message}}</span>
+                                            <input id="txtTerm" type="text" ng-model="term" data-msg="Es requerido" class="form-control" required number><br /><span ng-show="errorsCount > 0 && errors.term.status">{{errors.term.message}}</span>
                                         </div>
                                     </li>
                                     <li data-id="slider_EsEmpleado">
@@ -219,17 +209,18 @@
                                     <li data-id="slider_Salario">
                                         <div class="form-group">
                                             <label class="control-label" for="txtSalary">Salario</label>
-                                            <input id="txtSalary" type="text" ng-model="salary" data-msg="This is required" class="form-control" required />&nbsp;<span class="help-block">Cero para omitir</span>
+                                            <input id="txtSalary" type="text" ng-model="salary" data-msg="This is required" class="form-control" required number>&nbsp;<span class="help-block">Cero para omitir</span>
                                         </div>
                                     </li>
                                 </ul>
                             </div>
+                            <button id="btnCompare" ng-disabled="!products.list" ng-click="compareCredits()" class="btn btn-success btn-xl" style="width:100%;">Comparar</button>
+
                         </td>
-                        <td style="width:30%;border:1px solid white;"></td>
+                        <td style="width:10%;border:1px solid white;"></td>
                     </tr>
                 </table>
 
-                <button id="btnCompare" ng-disabled="!products.list" ng-click="compareCredits()" class="btn btn-success btn-xl">Comparar</button>
                 <br />
 
                 <div>
